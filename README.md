@@ -42,6 +42,27 @@
 2. Приложите в файл README.md текст использованных команд в GitHub.
 
 ---
+### Решение Задание 1 
+
+![image](https://github.com/killakazzak/hw-02-zabbix-01/assets/32342205/9951a86f-6ff3-434b-afed-1f84d328cdaf)
+
+![image](https://github.com/killakazzak/hw-02-zabbix-01/assets/32342205/59ae1f87-e6fb-4f30-9e1e-c6f0db1d069e)
+
+#### Установка и настройка PosgresSQL
+
+```
+dnf module list postgresql
+dnf module -y install postgresql:15
+postgresql-setup --initdb
+systemctl enable --now postgresql
+sed -i 's/host    all             all             127.0.0.1\/32            peer/host    all             all             0.0.0.0\/0                md5/' /var/lib/pgsql/data/pg_hba.conf
+su - postgres -c 'psql --command "CREATE USER zabbix WITH PASSWORD '\'0434981\'';"'
+su - postgres -c 'psql --command "CREATE DATABASE zabbix OWNER zabbix;"'
+zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+sed -i 's/# DBPassword=/DBPassword=0434981/g' /etc/zabbix/zabbix_server.conf
+```
+#### Установка Zabbix
+
 
 ### Задание 2 
 
