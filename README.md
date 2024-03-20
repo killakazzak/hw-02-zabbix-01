@@ -58,11 +58,18 @@ systemctl enable --now postgresql
 sed -i 's/host    all             all             127.0.0.1\/32            peer/host    all             all             0.0.0.0\/0                md5/' /var/lib/pgsql/data/pg_hba.conf
 su - postgres -c 'psql --command "CREATE USER zabbix WITH PASSWORD '\'0434981\'';"'
 su - postgres -c 'psql --command "CREATE DATABASE zabbix OWNER zabbix;"'
-zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
-sed -i 's/# DBPassword=/DBPassword=0434981/g' /etc/zabbix/zabbix_server.conf
 ```
 #### Установка Zabbix
-
+```
+rpm -Uvh https://repo.zabbix.com/zabbix/6.4/rhel/8/x86_64/zabbix-release-6.4-1.el8.noarch.rpm
+dnf clean all
+dnf module switch-to php:7.4
+dnf install zabbix-server-pgsql zabbix-web-pgsql zabbix-apache-conf zabbix-sql-scripts zabbix-selinux-policy zabbix-agent
+zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+sed -i 's/# DBPassword=/DBPassword=0434981/g' /etc/zabbix/zabbix_server.conf
+systemctl restart zabbix-server zabbix-agent httpd php-fpm
+systemctl enable zabbix-server zabbix-agent httpd php-fpm
+```
 
 ### Задание 2 
 
