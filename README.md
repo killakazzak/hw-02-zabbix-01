@@ -88,6 +88,25 @@ systemctl enable zabbix-server zabbix-agent httpd php-fpm
 3. Приложите в файл README.md скриншот раздела Monitoring > Latest data для обоих хостов, где видны поступающие от агентов данные.
 4. Приложите в файл README.md текст использованных команд в GitHub
 
+### Решение Задание 2
+
+```
+rpm -Uvh https://repo.zabbix.com/zabbix/6.4/rhel/8/x86_64/zabbix-release-6.4-1.el8.noarch.rpm
+dnf clean all
+dnf install zabbix-agent
+sed -i 's/Server=127.0.0.1/Server=10.159.86.98'/g' /etc/zabbix/zabbix_server.conf
+systemctl restart zabbix-agent
+systemctl enable --now  zabbix-agent
+```
+![image](https://github.com/killakazzak/hw-02-zabbix-01/assets/32342205/b8c194dd-ba2a-4643-8b0b-755aec5d5e0f)
+
+![image](https://github.com/killakazzak/hw-02-zabbix-01/assets/32342205/86d84261-41c0-44d1-a5f6-88705bcb2dc9)
+
+![image](https://github.com/killakazzak/hw-02-zabbix-01/assets/32342205/d4f36ac0-e3ea-42c7-b72b-053c646b3e06)
+
+
+
+
 ---
 ## Задание 3 со звёздочкой*
 Установите Zabbix Agent на Windows (компьютер) и подключите его к серверу Zabbix.
