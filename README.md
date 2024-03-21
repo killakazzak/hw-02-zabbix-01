@@ -114,6 +114,11 @@ systemctl enable --now  zabbix-agent
 #### Требования к результаты 
 1. Приложите в файл README.md скриншот раздела Latest Data, где видно свободное место на диске C:
 --- 
+## Решение Задание 3
+
+![image](https://github.com/killakazzak/hw-02-zabbix-01/assets/32342205/d63d3380-95b0-4055-bbab-aa52614594b7)
+
+
 
 ## Критерии оценки
 
