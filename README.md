@@ -117,6 +117,7 @@ systemctl enable --now  zabbix-agent
 ## Решение Задание 3
 
 ![image](https://github.com/killakazzak/hw-02-zabbix-01/assets/32342205/d63d3380-95b0-4055-bbab-aa52614594b7)
+![image](https://github.com/killakazzak/hw-02-zabbix-01/assets/32342205/27ab0c05-30aa-4a13-8d64-5ec4092775d3)
 
 
 
